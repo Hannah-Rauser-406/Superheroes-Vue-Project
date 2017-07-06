@@ -16,8 +16,18 @@ app.get('/', function(req, res){
   Superhero.find(function( err, superheroes ){
     if (err) throw err;
     res.json({data: superheroes, message: 'heroes successfully received'})
-  })
+  });
 });
+// req=object, parameter is a unique parameter (id, etc.,) the /:_id= find by id
+app.get('/:_id', function(req,res){
+  Superhero.findById(req.params._id, function(err, superhero){
+    if (err) throw err;
+    res.json({data: superhero, message: "hero received"});
+  })
+})
+
+
+
 app.post('/', function(req, res) {
   var superhero = new Superhero();
   superhero.name = req.body.name;
@@ -31,4 +41,4 @@ app.post('/', function(req, res) {
 });
 var server = app.listen(port, function(){
   console.log("Listening on port:", port);
-});
+})
