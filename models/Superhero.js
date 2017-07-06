@@ -3,7 +3,7 @@ var SuperheroSchema = new mongoose.Schema({
 //using constructor notation/function
   name: String,
   superpower: String,
-
+  img: String,
 })
 
 //allows us to access our SuperheroSchema AS just Superhero

@@ -31,12 +31,14 @@ app.get('/api/:_id', function(req,res){
 
 
 app.post('/api', function(req, res) {
+  console.log("Hitting post route")
   var superhero = new Superhero();
   superhero.name = req.body.name;
   superhero.superpower = req.body.superpower;
+  superhero.img = req.body.img;
 
   superhero.save().then(function(superhero) {
-    res.send(superhero);
+    res.json({message: "Hero successfully created", data: superhero});
   }, function(err) {
     res.send("Failed to save :( ")
   })
