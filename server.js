@@ -14,14 +14,14 @@ app.use(bodyParser.urlencoded({
 //links the html, css, and js files
 app.use(express.static(__dirname + "/public"));
 
-app.get('/', function(req, res){
+app.get('/api', function(req, res){
   Superhero.find(function( err, superheroes ){
     if (err) throw err;
     res.json({data: superheroes, message: 'heroes successfully received'})
   });
 });
 // req=object, parameter is a unique parameter (id, etc.,) the /:_id= find by id
-app.get('/:_id', function(req,res){
+app.get('/api/:_id', function(req,res){
   Superhero.findById(req.params._id, function(err, superhero){
     if (err) throw err;
     res.json({data: superhero, message: "hero received"});
@@ -30,7 +30,7 @@ app.get('/:_id', function(req,res){
 
 
 
-app.post('/', function(req, res) {
+app.post('/api', function(req, res) {
   var superhero = new Superhero();
   superhero.name = req.body.name;
   superhero.superpower = req.body.superpower;
