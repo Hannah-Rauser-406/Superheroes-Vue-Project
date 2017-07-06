@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Superhero = require('./models/Superhero');
 var app = express();
-var port= 3000;
+var port= 3001;
 
 mongoose.connect('mongodb://localhost/superheroes');
 
@@ -13,7 +13,10 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get('/', function(req, res){
-  res.send("Hello!");
+  Superhero.find(function( err, superheroes ){
+    if (err) throw err;
+    res.json({data: superheroes, message: 'heroes successfully received'})
+  })
 });
 app.post('/', function(req, res) {
   var superhero = new Superhero();
@@ -25,7 +28,7 @@ app.post('/', function(req, res) {
   }, function(err) {
     res.send("Failed to save :( ")
   })
-})
+});
 var server = app.listen(port, function(){
   console.log("Listening on port:", port);
 });
