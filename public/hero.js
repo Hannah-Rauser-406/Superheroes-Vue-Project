@@ -19,7 +19,7 @@ var app = new Vue({
         //if you just used this without defining it as self and tried to use the .ajax method it would only refer to the ajax method
         $.ajax({
             method: "GET",
-            url: "/api",
+            url: "/api/heroes",
         }).done(function(response){
           self.heroes = response.data
           console.log("received heroes", self.heroes);
@@ -34,12 +34,23 @@ var app = new Vue({
         };
         console.log("New superhero")
         $.ajax({
-          url: '/api',
+          url: '/api/heroes',
           method: 'POST',
           data: newSuperhero
         }).done(function(response){
           console.log(response.data, "Hero created!");
         })
+      }
+      //Syntax error on 45
+      deleteHero: function(_id){
+        console.log("Deleting Hero", _id);
+        var self = this;
+        $.ajax({
+          method: "DELETE",
+          url: '/api/heroes/'+ _id,
+        }).done(function(response){
+          console.log(response);
+        });
       }
   }
 });
