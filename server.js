@@ -22,15 +22,7 @@ app.use(express.static(__dirname + "/public"));
 
 
 // req=object, parameter is a unique parameter (id, etc.,) the /:_id= find by id
-app.get('/api/heroes/:_id', function(req,res){
-  Superhero.findById(req.params._id, function(err, superhero){
-    if(err){
-      res.send(err)
-    }else{
-      res.json({data: superhero, message: "hero received"});
-    }
-  });
-});
+
 
 app.delete('/api/heroes/:_id', function(req,res){
 
