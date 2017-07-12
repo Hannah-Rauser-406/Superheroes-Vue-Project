@@ -29,32 +29,19 @@ app.get('/api/heroes/:_id', function(req,res){
     }else{
       res.json({data: superhero, message: "hero received"});
     }
-  })
+  });
 });
-
-
-
-
 
 app.delete('/api/heroes/:_id', function(req,res){
 
 Superhero.remove({ _id: req.params._id }, function(err){
-  if(err){
+    if(err){
     res.send(err)
-  }else{
+    }else{
     res.send("Superhero deleted.")
-  }
-})
-
-})
-
-
-
-
-
-
-
-
+    }
+  });
+});
 
 var server = app.listen(port, function(){
   console.log("Listening on port:", port);
