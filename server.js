@@ -2,6 +2,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Superhero = require('./models/Superhero');
+var mainRoutes = require('./routes/main');
+var heroRoutes = require('./routes/superheroes');
+
 var app = express();
 var port= 3001;
 
@@ -11,6 +14,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended:true
 }));
+app.use("/", mainRoutes);
+app.use("/api/heroes", heroRoutes);
+
 //links the html, css, and js files
 app.use(express.static(__dirname + "/public"));
 
