@@ -14,7 +14,7 @@ Router.route("/").get(function(req,res){
   console.log("Hitting Post Route");
   var superhero = new Superhero();
   superhero.name = req.body.name;
-  superhero.superpower = req.body.superhero;
+  superhero.superpower = req.body.superpower;
   superhero.img = req.body.img;
 
   superhero.save().then(function(superhero){
@@ -32,13 +32,16 @@ Router.route("/:_id").get(function(req,res){
       res.json({message:"Superhero Received", data: superhero});
     }
   });
-}).remove({ _id: req.params._id }, function(err){
+}).delete(function(req,res){
+  //first param is called a search object
+ Superhero.remove({_id: req.params._id}, function(err){
     if(err){
-    res.send(err)
+      res.send(err);
     }else{
-    res.send("Superhero deleted.")
+      res.send("Superhero deleted.");
     }
   });
+});
 
 
 module.exports = Router;
