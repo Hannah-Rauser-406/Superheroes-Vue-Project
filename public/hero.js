@@ -40,8 +40,7 @@ var app = new Vue({
         }).done(function(response){
           console.log(response.data, "Hero created!");
         })
-      }
-      //Syntax error on 45
+      },
       deleteHero: function(_id){
         console.log("Deleting Hero", _id);
         var self = this;
