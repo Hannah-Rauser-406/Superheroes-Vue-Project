@@ -20,15 +20,7 @@ app.use("/api/heroes", heroRoutes);
 //links the html, css, and js files
 app.use(express.static(__dirname + "/public"));
 
-app.get('/api/heroes', function(req, res){
-  Superhero.find(function( err, superheroes ){
-    if(err){
-      res.send(err)
-    }else{
-      res.json({data: superheroes, message: 'heroes successfully received'})
-    }
-  });
-});
+
 // req=object, parameter is a unique parameter (id, etc.,) the /:_id= find by id
 app.get('/api/heroes/:_id', function(req,res){
   Superhero.findById(req.params._id, function(err, superhero){
@@ -38,23 +30,11 @@ app.get('/api/heroes/:_id', function(req,res){
       res.json({data: superhero, message: "hero received"});
     }
   })
-})
-
-
-
-app.post('/api/heroes', function(req, res) {
-  console.log("Hitting post route")
-  var superhero = new Superhero();
-  superhero.name = req.body.name;
-  superhero.superpower = req.body.superpower;
-  superhero.img = req.body.img;
-
-  superhero.save().then(function(superhero) {
-    res.json({message: "Hero successfully created", data: superhero});
-  }, function(err) {
-    res.send("Failed to save :( ")
-  })
 });
+
+
+
+
 
 app.delete('/api/heroes/:_id', function(req,res){
 

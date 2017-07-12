@@ -39,6 +39,7 @@ var app = new Vue({
           method: 'POST',
           data: newSuperhero
         }).done(function(response){
+          console.log(response);
           console.log(response.data, "Hero created!");
         })
       },

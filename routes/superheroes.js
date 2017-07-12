@@ -10,6 +10,18 @@ Router.route("/").get(function(req,res){
       res.json({data: superheroes});
     }
   });
+}).post(function(req,res){
+  console.log("Hitting Post Route");
+  var superhero = new Superhero();
+  superhero.name = req.body.name;
+  superhero.superpower = req.body.superhero;
+  superhero.img = req.body.img;
+
+  superhero.save().then(function(superhero){
+    res.json({message: "Superhero successfully created", data: superhero});
+  }, function(err){
+    res.send(err);
+  })
 })
 
 module.exports = Router;
