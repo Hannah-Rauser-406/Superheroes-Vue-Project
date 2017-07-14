@@ -20,21 +20,9 @@ app.use("/api/heroes", heroRoutes);
 //links the html, css, and js files
 app.use(express.static(__dirname + "/public"));
 
-
 // req=object, parameter is a unique parameter (id, etc.,) the /:_id= find by id
-
-
-app.delete('/api/heroes/:_id', function(req,res){
-
-Superhero.remove({ _id: req.params._id }, function(err){
-    if(err){
-    res.send(err)
-    }else{
-    res.send("Superhero deleted.")
-    }
-  });
-});
+app.delete('/api/heroes/:_id', function(req,res));
 
 var server = app.listen(port, function(){
   console.log("Listening on port:", port);
-})
+});
