@@ -17,12 +17,14 @@ Router.route("/").get(function(req,res){
   superhero.superpower = req.body.superpower;
   superhero.img = req.body.img;
 
-  superhero.save().then(function(superhero){
-    res.json({message: "Superhero successfully created", data: superhero});
-  }, function(err){
-    res.send(err);
-  })
-})
+  superhero.save(function(err,superhero){
+    if(err){
+      res.send(err);
+    }else{
+      res.json({ message: "Superhero successfully saved", data: superhero });
+    }
+  });
+});
 
 Router.route("/:_id").get(function(req,res){
   Superhero.findById(req.params._id, function(err, superhero){
