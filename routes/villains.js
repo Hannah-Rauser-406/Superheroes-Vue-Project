@@ -28,21 +28,22 @@ Router.route("/")
   });
 });
 
-Router.route("/:_id").get(function(req,res){
-  Villain.findById(req.params._id, function(err, superhero){
-    if(err){
-      res.send(err);
-    }else{
-      res.json({message:"Villain Received", data: villain});
-    }
-  });
-}).delete(function(req,res){
-
- Villain.remove({_id: req.params._id}, function(err){
-    if(err){
-      res.send(err);
-    }else{
-      res.send("Villain deleted.");
+Router.route("/:_id")
+  .get(function(req,res){
+    Villain.findById(req.params._id, function(err, superhero){
+      if(err){
+        res.send(err);
+      }else{
+        res.json({message:"Villain Received", data: villain});
+      }
+    });
+  })
+  .delete(function(req,res){
+    Villain.remove({_id: req.params._id}, function(err){
+      if(err){
+        res.send(err);
+      }else{
+        res.send("Villain deleted.");
     }
   });
 });
