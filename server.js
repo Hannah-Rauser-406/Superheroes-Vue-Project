@@ -7,7 +7,7 @@ var heroRoutes = require('./routes/superheroes');
 var villainRoutes = require('./routes/villains');
 var Villain = require('./models/Villain');
 var app = express();
-var port= 3001;
+var port= 3002;
 
 mongoose.connect('mongodb://localhost/superheroes');
 
